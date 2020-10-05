@@ -60,6 +60,7 @@ function App() {
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [insurance, setInsurance] = useState('');
 
+  //Google login function to store username
   const onSuccess = (res) => {
     setisLoggedIn(true)
     console.log('Google Login Success:', res.profileObj);
@@ -70,6 +71,7 @@ function App() {
     }   
   };
   
+  //Google logout info
   const onSuccessLogout = () => {
     setisLoggedIn(false)
     setInsurance('')
@@ -81,7 +83,7 @@ function App() {
   }
 
   const CernerAuthorization = (event, res) => {
-    //This doesn't work, need to figure this out
+    //This doesn't work, need to figure this out, but this is one way to get through oauth2 w/ fhir. I think issue w/ iss
     FHIR.oauth2.authorize({
       'iss' : "https://oauth-api.cerner.com/oauth/access",
       'client_id': process.env.REACT_APP_CERNER_ID,
@@ -91,7 +93,7 @@ function App() {
     console.log('Cerner Login Success: currentUser:', res);
   }
   const AetnaAuthorization = (event, res) => {
-    //This doesn't work, need to figure this out
+    //Might want to use something similar for Aetna OAuth??
     // FHIR.oauth2.authorize({
     //   'iss' : "https://oauth-api.cerner.com/oauth/access",
     //   'client_id': process.env.REACT_APP_CERNER_ID,
