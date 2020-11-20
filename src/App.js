@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
 import { GoogleLogout } from 'react-google-login';
 import { useState, setState } from 'react';
@@ -19,6 +20,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import FHIR from "fhirclient"
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import { cernerLogin } from './cernerLogin';
+import { loginHelper } from './aetnaLogin';
+import { aetnaLogin } from './aetnaLogin';
+import * as Querystring from "query-string"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 const clientId =
   process.env.REACT_APP_GOOGLE_ID
 
-function App() {
+function App(props) {
   const classes = useStyles();
   //temp until we want clicking on dif providers to take them somewhere
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -55,7 +60,7 @@ function App() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const [code, setCode] = React.useState(null);
   const [userName, setUserName] = useState('');
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [insurance, setInsurance] = useState('');
@@ -85,10 +90,14 @@ function App() {
   const CernerAuthorization = (event, res) => {
     //This doesn't work, need to figure this out, but this is one way to get through oauth2 w/ fhir. I think issue w/ iss
     FHIR.oauth2.authorize({
-      'iss' : "https://oauth-api.cerner.com/oauth/access",
-      'client_id': process.env.REACT_APP_CERNER_ID,
-      'scope':  'patient/AllergyIntolerance.read patient/Appointment.read patient/CarePlan.read patient/Condition.read patient/DiagnosticReport.read patient/DocumentReference.read patient/Encounter.read patient/Goal.read patient/Immunization.read patient/MedicationAdministration.read'
-    });
+      "iss": "https://authorization.cerner.com/tenants/ec2458f2-1e24-41c8-b71b-0e701af7583d",
+      "client_id": process.env.REACT_APP_CERNER_ID,
+      "scope": "patient/*.read"
+  });
+  FHIR.oauth2.ready()
+  .then(client => client.request("Patient"))
+  .then(console.log)
+  .catch(console.error);
     setInsurance('Cerner')
     console.log('Cerner Login Success: currentUser:', res);
   }
@@ -99,8 +108,10 @@ function App() {
     //   'client_id': process.env.REACT_APP_CERNER_ID,
     //   'scope':  'patient/AllergyIntolerance.read patient/Appointment.read patient/CarePlan.read patient/Condition.read patient/DiagnosticReport.read patient/DocumentReference.read patient/Encounter.read patient/Goal.read patient/Immunization.read patient/MedicationAdministration.read'
     // });
-    setInsurance('Aetna')
-    console.log('Cerner Login Success: currentUser:', res);
+    aetnaLogin(code)
+    console.log('Aetna Login Success: currentUser:', res);
+ 
+    
   }
   return (
     <div className="App">
@@ -186,7 +197,7 @@ function App() {
       <ListItem button onClick={handleClick}>
         <ListItemText primary="EPIC" style={{textAlign: "center"}}/>
       </ListItem>
-      <ListItem button onClick={handleClick}>
+      <ListItem button onClick={() => cernerLogin(code)}>
         <ListItemText primary="Cerner" style={{textAlign: "center"}}/>
       </ListItem>
     </List>
