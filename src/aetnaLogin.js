@@ -1,7 +1,7 @@
 import axios from "axios"
 import queryString from "querystring"
 
-const redirectUri = "https://localhost:3000"
+const redirectUri = "http://localhost:3000"
 const clientId = process.env.REACT_APP_AETNA_ID
 const clientSecret = process.env.REACT_APP_AETNA_SECRET
 const scopes ="patient/*.read launch/patient"
@@ -24,8 +24,9 @@ export const aetnaLogin = (code) => {
     )
   }
 }
-
+let data1;
 export const loginHelper = async (code) => {
+  const proxyurl = "https://cors-anywhere.herokuapp.com/"
   const accessForm = queryString.stringify({
     grant_type: "authorization_code",
     code,
@@ -44,15 +45,32 @@ export const loginHelper = async (code) => {
     })
     .then((res) => {
       // removes 'code' query param to clean up URL
-      window.history.replaceState(null, null, window.location.pathname)
-      console.log(res.data)
-      return res.data
+      // window.history.replaceState(null, null, window.location.pathname)
+      console.log(res)
+      return res
     })
     .catch((err) => {
       console.log(err)
     })
 }
 
+export const getNewToken = (refreshToken) => {
+  const accessForm = queryString.stringify({
+    grant_type: "token",
+    token: refreshToken,
+  })
+  const auth = btoa(`${clientId}:${clientSecret}`)
+  axios
+    .post("https://vteapif1.aetna.com/fhirdemo/fhirdemo/v1/fhirserver_auth/oauth2/token", accessForm, {
+      headers: {
+        "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+        Authorization: `Basic ${auth}`,
+      },
+    })
+    .then((res) => {
+      return res.data.access_token
+    })
+}
 
 export const getMyData = (token) => {
   if (token) {

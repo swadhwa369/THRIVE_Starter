@@ -2,8 +2,8 @@ import React from 'react';
 import './App.css';
 import axios from 'axios';
 import { GoogleLogin } from 'react-google-login';
-import { GoogleLogout } from 'react-google-login';
-import { useState, setState } from 'react';
+import { GoogleLogout } from 'react-google-login'
+import { useEffect, useState, setState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -21,7 +21,7 @@ import FHIR from "fhirclient"
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { cernerLogin } from './cernerLogin';
-import { loginHelper } from './aetnaLogin';
+import { loginHelper, data1 } from './aetnaLogin';
 import { aetnaLogin } from './aetnaLogin';
 import * as Querystring from "query-string"
 
@@ -44,9 +44,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-const clientId =
-  process.env.REACT_APP_GOOGLE_ID
+const aetnaClientId = process.env.REACT_APP_AETNA_ID
+const aetnaClientSecret = process.env.REACT_APP_AETNA_SECRET
+const clientId = process.env.REACT_APP_GOOGLE_ID
 
 function App(props) {
   const classes = useStyles();
@@ -64,7 +64,40 @@ function App(props) {
   const [userName, setUserName] = useState('');
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [insurance, setInsurance] = useState('');
+  const [ins, setIns] = useState('');
 
+  useEffect(() => {
+    if (!code) {
+      let code = new URLSearchParams(window.location.search).get("code")
+      if (code) {
+        setCode(code.slice(0, -1))
+        
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    loginHelper(code)
+    // axios.request({
+    //   headers: {
+    //     "Access-Control-Allow-Origin": "*",
+    //     "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
+    //     "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+    //     // Authorization: `Basic ${auth}`,
+    //   },
+    //   url: "/oauth2/token",
+    //   method: "post",
+    //   baseURL: "https://vteapif1.aetna.com/fhirdemo/fhirdemo/v1/fhirserver_auth",
+    //   auth: {
+    //     authorization_code: code
+    //   },
+    //   data: {
+    //     "grant_type": "authorization_code",  
+    //   }
+    // }).then(function(res) {
+    //   console.log(res);  
+    // });
+  })
   //Google login function to store username
   const onSuccess = (res) => {
     setisLoggedIn(true)
@@ -109,9 +142,9 @@ function App(props) {
     //   'scope':  'patient/AllergyIntolerance.read patient/Appointment.read patient/CarePlan.read patient/Condition.read patient/DiagnosticReport.read patient/DocumentReference.read patient/Encounter.read patient/Goal.read patient/Immunization.read patient/MedicationAdministration.read'
     // });
     aetnaLogin(code)
+    setInsurance('Aetna')
     console.log('Aetna Login Success: currentUser:', res);
- 
-    
+    console.log(code)
   }
   return (
     <div className="App">
