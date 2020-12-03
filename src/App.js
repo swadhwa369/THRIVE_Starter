@@ -61,7 +61,9 @@ function App(props) {
     setAnchorEl(null);
   };
   const [code, setCode] = React.useState(null);
-  const [data, setData] = React.useState(null);
+  const [data, setData] = React.useState([1,2]);
+  const [access_token, setAT] = React.useState(null);
+  const [patient, setPatient] = React.useState(null);
   const [userName, setUserName] = useState('');
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [insurance, setInsurance] = useState('');
@@ -79,7 +81,10 @@ function App(props) {
           setData(data1)
         }
         getData()
-        
+        if(data !== [1,2]){
+          setAT(data[0])
+          setPatient(data[1])
+        }
         
       }
     }
@@ -154,8 +159,9 @@ function App(props) {
     setInsurance('Aetna')
     console.log('Aetna Login Success: currentUser:', res);
     console.log(code)
-    if(data !== null){
-      console.log(data)
+    if(data !== [1,2]){
+      console.log(access_token)
+      console.log(patient)
     }
   }
   return (
