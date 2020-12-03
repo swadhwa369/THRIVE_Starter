@@ -24,9 +24,8 @@ export const aetnaLogin = (code) => {
     )
   }
 }
-let data1;
+
 export const loginHelper = async (code) => {
-  const proxyurl = "https://cors-anywhere.herokuapp.com/"
   const accessForm = queryString.stringify({
     grant_type: "authorization_code",
     code,
@@ -54,35 +53,35 @@ export const loginHelper = async (code) => {
     })
 }
 
-export const getNewToken = (refreshToken) => {
-  const accessForm = queryString.stringify({
-    grant_type: "token",
-    token: refreshToken,
-  })
-  const auth = btoa(`${clientId}:${clientSecret}`)
-  axios
-    .post("https://vteapif1.aetna.com/fhirdemo/v1/fhirserver_auth/oauth2/token", accessForm, {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
-        "content-type": "application/x-www-form-urlencoded;charset=utf-8",
-        Authorization: `Basic ${auth}`,
-      },
-    })
-    .then((res) => {
-      return res.data.access_token
-    })
-}
+// export const getNewToken = (refreshToken) => {
+//   const accessForm = queryString.stringify({
+//     grant_type: "token",
+//     token: refreshToken,
+//   })
+//   const auth = btoa(`${clientId}:${clientSecret}`)
+//   axios
+//     .post("https://vteapif1.aetna.com/fhirdemo/v1/fhirserver_auth/oauth2/token", accessForm, {
+//       headers: {
+//         "Access-Control-Allow-Origin": "*",
+//         "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
+//         "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+//         Authorization: `Basic ${auth}`,
+//       },
+//     })
+//     .then((res) => {
+//       return res.data.access_token
+//     })
+// }
 
-export const getMyData = (token) => {
-  if (token) {
-    fetch("https://devhapi.aetna.com/fhirdelivery/sb/ia/v1/patientaccess/Patient/{2345678901234560001}", {
-      headers: { Authorization: "Bearer " + token },
-    })
-      .then((res) => res.json())
-      .catch((err) => console.log(err))
-      .then((data) => {
-        return data
-      })
-  }
-}
+// export const getMyData = (token) => {
+//   if (token) {
+//     fetch("https://devhapi.aetna.com/fhirdelivery/sb/ia/v1/patientaccess/Patient/{2345678901234560001}", {
+//       headers: { Authorization: "Bearer " + token },
+//     })
+//       .then((res) => res.json())
+//       .catch((err) => console.log(err))
+//       .then((data) => {
+//         return data
+//       })
+//   }
+// }
