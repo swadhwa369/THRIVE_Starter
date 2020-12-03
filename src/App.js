@@ -103,6 +103,7 @@ function App(props) {
         }
       );
       console.log("patient info", patientInfo.data)
+      console.log("patient info", patientInfo)
       return patientInfo;
     } catch (err) {
       console.log(err);
