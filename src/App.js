@@ -71,8 +71,9 @@ function App(props) {
       let code = new URLSearchParams(window.location.search).get("code")
       if (code) {
         setCode(code.slice(0, -1))
-        token = loginHelper(code)
-        console.log(token)
+        data = loginHelper(code)
+        console.log(data[patient])
+        console.log(data[access_token])
       }
     }
   }, [])
