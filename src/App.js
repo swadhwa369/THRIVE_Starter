@@ -123,10 +123,12 @@ function App(props) {
 //     console.log(err);
 //   }
 // };
+useEffect(() =>{
+  if(access_token !== null && patient !== null){
+    getPatientInfo(access_token, patient)
+  }
+}, [])
 
-if(access_token !== null && patient !== null){
-  getPatientInfo(access_token, patient)
-}
   const onSuccess = (res) => {
     setisLoggedIn(true)
     console.log('Google Login Success:', res.profileObj);
