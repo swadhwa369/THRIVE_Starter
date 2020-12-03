@@ -93,23 +93,40 @@ function App(props) {
     }
   }, [])
   
-  const getPatientInfo = async (token, patient_id) => {
-    try {
-      const patientInfo = await axios.get(
-        `vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id,
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      console.log(patientInfo)
-      return patientInfo;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const getPatientInfo = async (token, patient_id) => {
+  //   try {
+  //     const patientInfo = await axios.get(
+        
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + token,
+  //         },
+  //       }
+  //     );
+  //     console.log(patientInfo)
+  //     return patientInfo;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   
+export const getPatientInfo = async (token, patient_id) => {
+  try {
+    const patientInfo = await fetch(`vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const piJson = await patientInfo.json();
+    console.log(piJson)
+    return piJson;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
   const onSuccess = (res) => {
     setisLoggedIn(true)
     console.log('Google Login Success:', res.profileObj);
