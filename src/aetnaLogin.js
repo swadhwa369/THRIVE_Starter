@@ -63,6 +63,8 @@ export const getNewToken = (refreshToken) => {
   axios
     .post("https://vteapif1.aetna.com/fhirdemo/fhirdemo/v1/fhirserver_auth/oauth2/token", accessForm, {
       headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
         "content-type": "application/x-www-form-urlencoded;charset=utf-8",
         Authorization: `Basic ${auth}`,
       },
