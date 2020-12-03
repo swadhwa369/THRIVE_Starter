@@ -81,7 +81,8 @@ function App(props) {
           setData(data1)
           if(data1){
             setAT(data1[0])
-            setPatient(data1[1])   
+            setPatient(data1[1])  
+            getPatientInfo(access_token, patient) 
           }
         }
         getData()
@@ -158,7 +159,7 @@ function App(props) {
       console.log(access_token)
       console.log(patient)
     }
-    getPatientInfo(access_token, patient)
+   
   }
   return (
     <div className="App">
