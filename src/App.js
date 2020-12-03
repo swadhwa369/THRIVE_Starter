@@ -81,9 +81,7 @@ function App(props) {
           setData(data1)
           if(data1){
             setAT(data1[0])
-            setPatient(data1[1])  
-         
-             
+            setPatient(data1[1])      
           }
         }
         getData()
@@ -126,7 +124,9 @@ const getPatientInfo = async (token, patient_id) => {
   }
 };
 
-
+if(access_token !== null && patient !== null){
+  getPatientInfo(access_token, patient)
+}
   const onSuccess = (res) => {
     setisLoggedIn(true)
     console.log('Google Login Success:', res.profileObj);
@@ -177,9 +177,7 @@ const getPatientInfo = async (token, patient_id) => {
       console.log(access_token)
       console.log(patient)
     }
-    if(access_token !== null && patient !== null){
-      getPatientInfo(access_token, patient)
-    }
+    
   }
   return (
     <div className="App">
