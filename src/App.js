@@ -81,7 +81,7 @@ function App(props) {
           setData(data1)
           if(data !== [1,2]){
             setAT(data[0])
-            setPatient(data[1])  
+            setPatient(data[1])   
           }
         }
         getData()
