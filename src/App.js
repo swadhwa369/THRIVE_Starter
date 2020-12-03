@@ -96,7 +96,7 @@ function App(props) {
   const getPatientInfo = async (token, patient_id) => {
     try {
       const patientInfo = await axios.get(
-        `vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id + '&scope=patient/*.*',
+        `vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id + '&scope=patient/Patient.*',
         {
           headers: {
             Authorization: "Bearer " + token,
