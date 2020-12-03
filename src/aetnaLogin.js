@@ -19,6 +19,7 @@ export const aetnaLogin = (code) => {
           scope: scopes,
           redirect_uri: redirectUri,
           code_challenge: "GGqkdDekerMMQYcibZIY1gvLT6cb3TQ8ydBxXSwRem8",
+          code_challenge_method: "S256a",
           state: "1234"
         })
     )
@@ -40,7 +41,7 @@ export const loginHelper = async (code) => {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
-        "content-type": "application/x-www-form-urlencoded;charset=utf-8",
+        "content-type": "application/x-www-form-urlencoded",
         Authorization: `Basic ${auth}`,
       },
     })
