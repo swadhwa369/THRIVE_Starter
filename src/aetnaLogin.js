@@ -33,6 +33,7 @@ export const loginHelper = async (code) => {
     redirect_uri: redirectUri,
   })
   // base64 encode auth data
+  console.log(accessForm)
   const auth = btoa(`${clientId}:${clientSecret}`)
   return await axios
     .post("https://vteapif1.aetna.com/fhirdemo/v1/fhirserver_auth/oauth2/token", accessForm, {
