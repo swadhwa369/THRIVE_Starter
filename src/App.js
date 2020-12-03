@@ -110,7 +110,7 @@ function App(props) {
   //   }
   // };
   
-export const getPatientInfo = async (token, patient_id) => {
+const getPatientInfo = async (token, patient_id) => {
   try {
     const patientInfo = await fetch(`vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id, {
       method: "GET",
