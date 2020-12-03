@@ -83,7 +83,8 @@ function App(props) {
             setAT(data1[0])
             setPatient(data1[1]) 
             getPatientInfo(data1[0], data1[1])
-          }   
+          }
+           
         }
         getData()
        
@@ -95,16 +96,14 @@ function App(props) {
   const getPatientInfo = async (token, patient_id) => {
     try {
       const patientInfo = await axios.get(
-        
+        `vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id + '&scope=patient/*.*',
         {
           headers: {
             Authorization: "Bearer " + token,
-            scope: 'patient/*.*'
           },
         }
       );
-      console.log("patient info", patientInfo.data)
-      console.log("patient info", patientInfo)
+      console.log(patientInfo)
       return patientInfo;
     } catch (err) {
       console.log(err);
