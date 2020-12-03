@@ -71,13 +71,13 @@ function App(props) {
       let code = new URLSearchParams(window.location.search).get("code")
       if (code) {
         setCode(code.slice(0, -1))
-        
+        loginHelper(code)
       }
     }
   }, [])
   
-  useEffect(() => {
-    loginHelper(code)
+  // useEffect(() => {
+  //   loginHelper(code)
     // axios.request({
     //   headers: {
     //     "Access-Control-Allow-Origin": "*",
@@ -97,7 +97,7 @@ function App(props) {
     // }).then(function(res) {
     //   console.log(res);  
     // });
-  })
+  // })
   //Google login function to store username
   const onSuccess = (res) => {
     setisLoggedIn(true)
