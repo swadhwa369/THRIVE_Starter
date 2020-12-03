@@ -79,8 +79,10 @@ function App(props) {
           data1 = await loginHelper(code)
           console.log(data1)
           setData(data1)
-          setAT(data[0])
-          setPatient(data[1])
+          if(data !== [1,2]){
+            setAT(data[0])
+            setPatient(data[1])  
+          }
         }
         getData()
        
