@@ -75,7 +75,7 @@ function App(props) {
       }
     }
   }, [])
-
+  loginHelper(code)
   useEffect(() => {
     loginHelper(code)
     // axios.request({
@@ -97,7 +97,7 @@ function App(props) {
     // }).then(function(res) {
     //   console.log(res);  
     // });
-  })
+  }, [])
   //Google login function to store username
   const onSuccess = (res) => {
     setisLoggedIn(true)
