@@ -75,7 +75,7 @@ function App(props) {
       }
     }
   }, [])
-  loginHelper(code)
+
   useEffect(() => {
     loginHelper(code)
     // axios.request({
