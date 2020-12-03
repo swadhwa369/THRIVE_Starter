@@ -156,8 +156,6 @@ function App(props) {
     console.log(code)
     if(data !== null){
       console.log(data)
-      console.log(data[access_token])
-      console.log(data[patient])
     }
   }
   return (

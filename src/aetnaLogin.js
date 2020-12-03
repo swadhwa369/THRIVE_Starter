@@ -49,7 +49,7 @@ export const loginHelper = async (code) => {
       // removes 'code' query param to clean up URL
       // window.history.replaceState(null, null, window.location.pathname)
       console.log(res)
-      return res.data
+      return [res.data.access_token, res.data.patient]
     })
     .catch((err) => {
       console.log(err)
