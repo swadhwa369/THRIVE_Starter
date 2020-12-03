@@ -75,9 +75,11 @@ function App(props) {
         let data1 = null;
         async function getData(){
           data1 = await loginHelper(code)
+          console.log(data1)
+          setData(data1)
         }
         getData()
-        setData(data1)
+        
         
       }
     }
