@@ -100,10 +100,13 @@ function App(props) {
         {
           headers: {
             Authorization: "Bearer " + token,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
           },
         }
       );
-      console.log(patientInfo)
+      const piJSON = await patientInfo.json();
+      console.log(piJSON)
       return patientInfo;
     } catch (err) {
       console.log(err);
