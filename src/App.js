@@ -81,8 +81,11 @@ function App(props) {
           setData(data1)
           if(data1){
             setAT(data1[0])
-            setPatient(data1[1])      
+            setPatient(data1[1]) 
           }
+          if(access_token !== null && patient !== null){
+            getPatientInfo(access_token, patient)
+          }     
         }
         getData()
        
@@ -123,11 +126,6 @@ function App(props) {
 //     console.log(err);
 //   }
 // };
-useEffect(() =>{
-  if(access_token !== null && patient !== null){
-    getPatientInfo(access_token, patient)
-  }
-}, [])
 
   const onSuccess = (res) => {
     setisLoggedIn(true)
