@@ -82,9 +82,7 @@ function App(props) {
           if(data1){
             setAT(data1[0])
             setPatient(data1[1])  
-            if(access_token !== null && patient !== null){
-              getPatientInfo(access_token, patient)
-            }
+         
              
           }
         }
@@ -162,7 +160,9 @@ function App(props) {
       console.log(access_token)
       console.log(patient)
     }
-   
+    if(access_token !== null && patient !== null){
+      getPatientInfo(access_token, patient)
+    }
   }
   return (
     <div className="App">
