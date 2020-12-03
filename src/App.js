@@ -72,7 +72,11 @@ function App(props) {
       let code = new URLSearchParams(window.location.search).get("code")
       if (code) {
         setCode(code.slice(0, -1))
-        var data1 = loginHelper(code)
+        let data1 = null;
+        async function getData(){
+          data1 = await loginHelper(code)
+        }
+        getData()
         setData(data1)
         
       }
