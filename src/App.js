@@ -61,6 +61,7 @@ function App(props) {
     setAnchorEl(null);
   };
   const [code, setCode] = React.useState(null);
+  const [data, setData] = React.useState(null);
   const [userName, setUserName] = useState('');
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [insurance, setInsurance] = useState('');
@@ -71,7 +72,7 @@ function App(props) {
       let code = new URLSearchParams(window.location.search).get("code")
       if (code) {
         setCode(code.slice(0, -1))
-        data = loginHelper(code)
+        setData(() => loginHelper(code))
         console.log(data[patient])
         console.log(data[access_token])
       }
