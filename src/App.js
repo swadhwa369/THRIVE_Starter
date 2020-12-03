@@ -116,9 +116,9 @@ const getPatientInfo = async (token, patient_id) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    const piJson = await patientInfo.json();
-    console.log(piJson)
-    return piJson;
+    const piText = await patientInfo.text();
+    console.log(piText)
+    return piText;
   } catch (err) {
     console.log(err);
   }
