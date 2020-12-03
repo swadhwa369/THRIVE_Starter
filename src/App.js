@@ -91,38 +91,38 @@ function App(props) {
     }
   }, [])
   
-  // const getPatientInfo = async (token, patient_id) => {
-  //   try {
-  //     const patientInfo = await axios.get(
+  const getPatientInfo = async (token, patient_id) => {
+    try {
+      const patientInfo = await axios.get(
         
-  //       {
-  //         headers: {
-  //           Authorization: "Bearer " + token,
-  //         },
-  //       }
-  //     );
-  //     console.log(patientInfo)
-  //     return patientInfo;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      console.log(patientInfo)
+      return patientInfo;
+    } catch (err) {
+      console.log(err);
+    }
+  };
   
-const getPatientInfo = async (token, patient_id) => {
-  try {
-    const patientInfo = await fetch(`vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const piText = await patientInfo.text();
-    console.log(piText)
-    return piText;
-  } catch (err) {
-    console.log(err);
-  }
-};
+// const getPatientInfo = async (token, patient_id) => {
+//   try {
+//     const patientInfo = await fetch(`vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id, {
+//       method: "GET",
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+//     const piText = await patientInfo.text();
+//     console.log(piText)
+//     return piText;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 if(access_token !== null && patient !== null){
   getPatientInfo(access_token, patient)
