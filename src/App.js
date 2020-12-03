@@ -73,9 +73,6 @@ function App(props) {
       if (code) {
         setCode(code.slice(0, -1))
         setData(() => loginHelper(code))
-        if(data){
-          console.log(data)
-        }
         
       }
     }
@@ -150,6 +147,7 @@ function App(props) {
     setInsurance('Aetna')
     console.log('Aetna Login Success: currentUser:', res);
     console.log(code)
+    console.log(data)
   }
   return (
     <div className="App">
