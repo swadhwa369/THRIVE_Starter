@@ -28,7 +28,7 @@ export const aetnaLogin = (code) => {
 export const loginHelper = async (code) => {
   const accessForm = queryString.stringify({
     grant_type: "authorization_code",
-    code,
+    code: code,
     code_verifier: "jhkghgd5rtstrss7utfhgjhgjh",
     redirect_uri: redirectUri,
   })
