@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 const aetnaClientId = process.env.REACT_APP_AETNA_ID
 const aetnaClientSecret = process.env.REACT_APP_AETNA_SECRET
-const clientId = REACT_APP_GOOGLE_ID
+const clientId = process.env.REACT_APP_GOOGLE_ID
 
 function App(props) {
   const classes = useStyles();
