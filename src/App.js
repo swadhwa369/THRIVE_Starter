@@ -154,7 +154,10 @@ function App(props) {
     setInsurance('Aetna')
     console.log('Aetna Login Success: currentUser:', res);
     console.log(code)
-    console.log(data)
+    if(data !== null){
+      console.log(data.access_token)
+      console.log(data.patient)
+    }
   }
   return (
     <div className="App">
