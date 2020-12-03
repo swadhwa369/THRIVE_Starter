@@ -99,6 +99,7 @@ function App(props) {
         {
           headers: {
             Authorization: "Bearer " + token,
+            scope: 'patient/*.*'
           },
         }
       );
