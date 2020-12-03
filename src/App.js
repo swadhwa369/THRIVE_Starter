@@ -73,8 +73,11 @@ function App(props) {
       if (code) {
         setCode(code.slice(0, -1))
         setData(() => loginHelper(code))
-        console.log(data[patient])
-        console.log(data[access_token])
+        if(data){
+          console.log(data[patient])
+          console.log(data[access_token])
+        }
+        
       }
     }
   }, [])
