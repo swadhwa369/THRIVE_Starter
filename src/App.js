@@ -82,10 +82,8 @@ function App(props) {
           if(data1){
             setAT(data1[0])
             setPatient(data1[1]) 
-          }
-          if(access_token !== null && patient !== null){
-            getPatientInfo(access_token, patient)
-          }     
+            getPatientInfo(data1[0], data1[1])
+          }   
         }
         getData()
        
