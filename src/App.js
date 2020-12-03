@@ -91,29 +91,23 @@ function App(props) {
     }
   }, [])
   
-  // useEffect(() => {
-  //   loginHelper(code)
-    // axios.request({
-    //   headers: {
-    //     "Access-Control-Allow-Origin": "*",
-    //     "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
-    //     "content-type": "application/x-www-form-urlencoded;charset=utf-8",
-    //     // Authorization: `Basic ${auth}`,
-    //   },
-    //   url: "/oauth2/token",
-    //   method: "post",
-    //   baseURL: "https://vteapif1.aetna.com/fhirdemo/fhirdemo/v1/fhirserver_auth",
-    //   auth: {
-    //     authorization_code: code
-    //   },
-    //   data: {
-    //     "grant_type": "authorization_code",  
-    //   }
-    // }).then(function(res) {
-    //   console.log(res);  
-    // });
-  // })
-  //Google login function to store username
+  const getPatientInfo = async (token, patient_id) => {
+    try {
+      const patientInfo = await axios.get(
+        `vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+      console.log(patientInfo)
+      return patientInfo;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
   const onSuccess = (res) => {
     setisLoggedIn(true)
     console.log('Google Login Success:', res.profileObj);
@@ -164,6 +158,7 @@ function App(props) {
       console.log(access_token)
       console.log(patient)
     }
+    getPatientInfo(access_token, patient)
   }
   return (
     <div className="App">
