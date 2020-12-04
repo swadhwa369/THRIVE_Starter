@@ -108,7 +108,7 @@ function App(props) {
       );
       // const piJSON = await patientInfo.json();
       // console.log(piJSON)
-      console.log(patientInfo.data)
+      console.log(patientInfo.data.birthDate)
       setPatientData(patientInfo.data)
       return patientInfo;
     } catch (err) {
@@ -285,7 +285,6 @@ function App(props) {
       <br />
       <br />
       <div>
-        {patientData.birthDate}
       </div>
       <div>
       <Paper className={classes.paper}>
