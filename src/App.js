@@ -285,7 +285,7 @@ function App(props) {
       <br />
       <br />
       <div>
-        {patientData[0]}
+        {patientData.birthDate}
       </div>
       <div>
       <Paper className={classes.paper}>
