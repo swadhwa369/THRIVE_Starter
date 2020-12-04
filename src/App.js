@@ -104,8 +104,9 @@ function App(props) {
           },
         }
       );
-      const piJSON = await patientInfo.json();
-      console.log(piJSON)
+      // const piJSON = await patientInfo.json();
+      // console.log(piJSON)
+      console.log(patientInfo)
       return patientInfo;
     } catch (err) {
       console.log(err);
