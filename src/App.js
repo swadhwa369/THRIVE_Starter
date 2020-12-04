@@ -64,6 +64,7 @@ function App(props) {
   const [data, setData] = React.useState([1,2]);
   const [access_token, setAT] = React.useState(null);
   const [patient, setPatient] = React.useState(null);
+  const [patientData, setPatientData] = React.useState(null);
   const [userName, setUserName] = useState('');
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [insurance, setInsurance] = useState('');
@@ -83,6 +84,7 @@ function App(props) {
             setAT(data1[0])
             setPatient(data1[1]) 
             getPatientInfo(data1[0], data1[1])
+            setInsurance('Aetna')
           }
            
         }
@@ -106,7 +108,8 @@ function App(props) {
       );
       // const piJSON = await patientInfo.json();
       // console.log(piJSON)
-      console.log(patientInfo)
+      console.log(patientInfo.data)
+      setPatientData(patientInfo.data)
       return patientInfo;
     } catch (err) {
       console.log(err);
@@ -172,7 +175,7 @@ function App(props) {
     //   'scope':  'patient/AllergyIntolerance.read patient/Appointment.read patient/CarePlan.read patient/Condition.read patient/DiagnosticReport.read patient/DocumentReference.read patient/Encounter.read patient/Goal.read patient/Immunization.read patient/MedicationAdministration.read'
     // });
     aetnaLogin(code)
-    setInsurance('Aetna')
+    
     console.log('Aetna Login Success: currentUser:', res);
     console.log(code)
     if(data !== [1,2]){
