@@ -111,7 +111,7 @@ function App(props) {
       // console.log(piJSON)
       console.log(patientInfo.data.name[0].text)
       setPatientData(patientInfo.data)
-      setPatientName(patientInfo.data.name)
+      setPatientName(patientInfo.data.name[0].text)
       return patientInfo;
     } catch (err) {
       console.log(err);
@@ -282,7 +282,7 @@ function App(props) {
       {insurance}
       </Typography>
     <Typography variant="h6" className={classes.title}> 
-      Hi, {userName} this is your Explanation of Benefits
+      Hi, {patientName} this is your Explanation of Benefits
       </Typography>
       <br />
       <br />
