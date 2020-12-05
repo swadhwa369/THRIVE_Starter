@@ -66,6 +66,7 @@ function App(props) {
   const [patient, setPatient] = React.useState(null);
   const [patientData, setPatientData] = React.useState(null);
   const [userName, setUserName] = useState('');
+  const [patientName, setPatientName] = useState('');
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [insurance, setInsurance] = useState('');
   const [ins, setIns] = useState('');
@@ -108,8 +109,9 @@ function App(props) {
       );
       // const piJSON = await patientInfo.json();
       // console.log(piJSON)
-      console.log(patientInfo.data.birthDate)
+      console.log(patientInfo.data)
       setPatientData(patientInfo.data)
+      setPatientName(patientInfo.data.name[text])
       return patientInfo;
     } catch (err) {
       console.log(err);
