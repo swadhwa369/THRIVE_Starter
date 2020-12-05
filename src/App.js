@@ -294,7 +294,10 @@ function App(props) {
           <Grid item>
           </Grid>
           <Grid item xs>
-            <Typography align="left">Medical services recieved and from who</Typography>
+            <Typography align="left">Medical services recieved and from who
+            blah blah blah blah
+            blah blah blah
+            </Typography>
           </Grid>
         </Grid>
       </Paper>
