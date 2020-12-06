@@ -28,15 +28,15 @@ import * as Querystring from "query-string"
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    minWidth:275,
     overflow: 'hidden',
     padding: theme.spacing(0, 3),
-    minWidth: 275
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    fontSize: 14,
+    flexGrow: 1,
   },
   paper: {
     maxWidth: 600,
@@ -296,8 +296,6 @@ function App(props) {
           </Grid>
           <Grid item xs>
             <Typography align="left">Medical services recieved and from who
-            blah blah blah blah
-            blah blah blah
             </Typography>
           </Grid>
         </Grid>
