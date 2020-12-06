@@ -297,7 +297,7 @@ function App(props) {
       {insurance}
       </Typography>
     <Typography variant="h6" className={classes.title}> 
-      These are the APIs and information returned
+      These are the APIs and information retrieved for the test member
       </Typography>
       <br />
       <br />
