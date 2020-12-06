@@ -13,6 +13,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -68,6 +70,12 @@ function App(props) {
   const [patientData, setPatientData] = React.useState(null);
   const [userName, setUserName] = useState('');
   const [patientName, setPatientName] = useState('');
+  const [patientAddress, setPatientAddress] = useState('')
+  const [patientBday, setPatientBday] = useState('')
+  const [patientGender, setPatientGender] = useState('')
+  const [patientPhone, setPatientPhone] = useState('')
+  const [patientMemberID, setPatientMemberID] = useState('')
+  const [patientPeriod, setPatientPeriod] = useState('')
   const [isLoggedIn, setisLoggedIn] = useState(false);
   const [insurance, setInsurance] = useState('');
   const [ins, setIns] = useState('');
@@ -113,6 +121,12 @@ function App(props) {
       console.log(patientInfo.data)
       setPatientData(patientInfo.data)
       setPatientName(patientInfo.data.name[0].text)
+      setPatientAddress(patientInfo.data.address[0].text)
+      setPatientBday(patientInfo.data.birthDate)
+      setPatientGender(patientInfo.data.gender)
+      setPatientPhone(patientInfo.data.telecom[0].value)
+      setPatientMemberID(patientInfo.data.identifier[0].value)
+      setPatientPeriod(patientInfo.data.identifier[0].period.toString())
       return patientInfo;
     } catch (err) {
       console.log(err);
@@ -283,68 +297,37 @@ function App(props) {
       {insurance}
       </Typography>
     <Typography variant="h6" className={classes.title}> 
-      Hi, {patientName} this is your Explanation of Benefits
+      These are the APIs and information returned
       </Typography>
       <br />
       <br />
       <div>
       </div>
       <div>
-      <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={2} >
-          <Grid item>
-          </Grid>
-          <Grid item xs>
-            <Typography align="left">Medical services recieved and from who
-            </Typography>
-          </Grid>
-        </Grid>
-      </Paper>
-      <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item>
-          </Grid>
-          <Grid item xs>
-            <Typography align="left">Amount billed: Cost of those services</Typography>
-          </Grid>
-        </Grid>
-      </Paper>
-      <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item>
-          </Grid>
-          <Grid item xs>
-            <Typography align="left">Amount paid by your health insurance plan</Typography>
-          </Grid>
-        </Grid>
-      </Paper>
-      <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item>
-          </Grid>
-          <Grid item xs>
-            <Typography align="left">What costs your health plan did not cover</Typography>
-          </Grid>
-        </Grid>
-      </Paper>
-      <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item>
-          </Grid>
-          <Grid item xs>
-            <Typography align="left">Amount covered by HRA</Typography>
-          </Grid>
-        </Grid>
-      </Paper>
-      <Paper className={classes.paper}>
-        <Grid container wrap="nowrap" spacing={2}>
-          <Grid item>
-          </Grid>
-          <Grid item xs>
-            <Typography align="left">Outstanding amount you are responsible for paying</Typography>
-          </Grid>
-        </Grid>
-      </Paper>
+      <Card className={classes.root} variant="outlined">
+      <CardContent>
+        <Typography variant="h5" component="h2">
+          Patient API
+        </Typography>
+        
+        <Typography variant="body2" component="p">
+          Member Name: {patientName}
+          <br />
+          Gender: {patientGender}
+          <br />
+          Address: {patientAddress}
+          <br />
+          Birth date: {patientBday}
+          <br />
+          Phone Number: {patientPhone}
+          <br />
+          Member ID: {patientMemberID}
+          <br />
+          Period: {patientPeriod}
+          <br />
+        </Typography>
+      </CardContent>
+    </Card>
       
       </div>
     </div>
