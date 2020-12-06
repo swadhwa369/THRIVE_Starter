@@ -126,7 +126,7 @@ function App(props) {
       setPatientGender(patientInfo.data.gender)
       setPatientPhone(patientInfo.data.telecom[0].value)
       setPatientMemberID(patientInfo.data.identifier[0].value)
-      setPatientPeriod(patientInfo.data.identifier[0].period.toString())
+      setPatientPeriod(JSON.stringify(patientInfo.data.identifier[0].period))
       return patientInfo;
     } catch (err) {
       console.log(err);
