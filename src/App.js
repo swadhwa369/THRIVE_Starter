@@ -30,12 +30,13 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     overflow: 'hidden',
     padding: theme.spacing(0, 3),
+    minWidth: 275
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
   title: {
-    flexGrow: 1,
+    fontSize: 14,
   },
   paper: {
     maxWidth: 600,
