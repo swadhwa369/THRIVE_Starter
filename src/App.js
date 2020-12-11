@@ -94,7 +94,7 @@ function App(props) {
             setAT(data1[0])
             setPatient(data1[1]) 
             getPatientInfo(data1[0], data1[1])
-            
+            getCoverageInfo(data1[0])
           }
            
         }
@@ -133,6 +133,26 @@ function App(props) {
     }
   };
   
+
+  const getCoverageInfo = async (token) => {
+    try {
+      const coverageInfo = await axios.get(
+        `https://vteapif1.aetna.com/fhirdemo/v1/patientaccess/Coverage/` ,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+           
+          },
+        }
+      );
+      // const piJSON = await patientInfo.json();
+      // console.log(piJSON)
+      console.log('Coverage: ', coverageInfo)
+      return coverageInfo;
+    } catch (err) {
+      console.log(err);
+    }
+  };
 // const getPatientInfo = async (token, patient_id) => {
 //   try {
 //     const patientInfo = await fetch(`vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id, {
