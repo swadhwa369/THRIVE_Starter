@@ -137,7 +137,7 @@ function App(props) {
   const getCoverageInfo = async (token) => {
     try {
       const coverageInfo = await axios.get(
-        `https://vteapif1.aetna.com/fhirdemo/v1/patientaccess/Coverage/` ,
+        `https://vteapif1.aetna.com/fhirdemo/v1/patientaccess/Coverage` ,
         {
           headers: {
             Authorization: "Bearer " + token,
