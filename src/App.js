@@ -25,7 +25,8 @@ import Paper from '@material-ui/core/Paper';
 import { cernerLogin } from './cernerLogin';
 import { loginHelper, data1 } from './aetnaLogin';
 import { aetnaLogin } from './aetnaLogin';
-import * as Querystring from "query-string"
+import { cignaLoginHelper, cignaLogin } from './cignaLogin';
+import * as Querystring from "query-string";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -86,20 +87,36 @@ function App(props) {
       if (code) {
         setCode(code.slice(0, -1))
         let data1 = null;
-        async function getData(){
-          data1 = await loginHelper(code)
-          console.log(data1)
-          setData(data1)
-          if(data1){
-            setAT(data1[0])
-            setPatient(data1[1]) 
-            getPatientInfo(data1[0], data1[1])
-            getCoverageInfo(data1[0])
+        if(insurance == 'Aetna'){
+          async function getData(){
+            data1 = await loginHelper(code)
+            console.log(data1)
+            setData(data1)
+            if(data1){
+              setAT(data1[0])
+              setPatient(data1[1]) 
+              getPatientInfo(data1[0], data1[1])
+              getCoverageInfo(data1[0])
+            }
+             
           }
-           
+          getData()  
         }
-        getData()
-       
+        if(insurance == 'Cigna'){
+          async function getData(){
+            data1 = await cignaLoginHelper(code)
+            console.log(data1)
+            setData(data1)
+            // if(data1){
+            //   setAT(data1[0])
+            //   setPatient(data1[1]) 
+            //   getPatientInfo(data1[0], data1[1])
+            //   getCoverageInfo(data1[0])
+            // }
+             
+          }
+          getData()  
+        }
         
       }
     }
@@ -147,7 +164,7 @@ function App(props) {
       );
       // const piJSON = await patientInfo.json();
       // console.log(piJSON)
-      console.log('Coverage: ', coverageInfo)
+      console.log('Coverage: ', coverageInfo.data)
       return coverageInfo;
     } catch (err) {
       console.log(err);
@@ -205,12 +222,6 @@ function App(props) {
     console.log('Cerner Login Success: currentUser:', res);
   }
   const AetnaAuthorization = (event, res) => {
-    //Might want to use something similar for Aetna OAuth??
-    // FHIR.oauth2.authorize({
-    //   'iss' : "https://oauth-api.cerner.com/oauth/access",
-    //   'client_id': process.env.REACT_APP_CERNER_ID,
-    //   'scope':  'patient/AllergyIntolerance.read patient/Appointment.read patient/CarePlan.read patient/Condition.read patient/DiagnosticReport.read patient/DocumentReference.read patient/Encounter.read patient/Goal.read patient/Immunization.read patient/MedicationAdministration.read'
-    // });
     aetnaLogin(code)
     setInsurance('Aetna')
     console.log('Aetna Login Success: currentUser:', res);
@@ -219,6 +230,18 @@ function App(props) {
       console.log(access_token)
       console.log(patient)
       setInsurance('Aetna')
+    }
+    
+  }
+  const cignaAuthorization = (event, res) => {
+    cignaLogin(code)
+    setInsurance('Cigna')
+    console.log('Aetna Login Success: currentUser:', res);
+    console.log(code)
+    if(data !== [1,2]){
+      console.log(access_token)
+      console.log(patient)
+      setInsurance('Cigna')
     }
     
   }
