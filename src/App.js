@@ -317,7 +317,7 @@ function App(props) {
       <ListItem button onClick={() => AetnaAuthorization()}>
       <ListItemText primary="Aetna"  style={{textAlign: "center"}}/>
       </ListItem>
-      <ListItem button onClick={handleClick}>
+      <ListItem button onClick={() => cignaAuthorization()}>
         <ListItemText primary="Cigna" style={{textAlign: "center"}} />
       </ListItem>
       <ListItem button onClick={handleClick}>
