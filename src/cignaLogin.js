@@ -11,7 +11,7 @@ export const cignaLogin = (code) => {
     return
   } else {
     window.location.replace(
-      "https://hi2.cigna.com/mga/sps/oauth/oauth20/authorize?" +
+      "https://r-hi2.cigna.com/mga/sps/oauth/oauth20/authorize?" +
         queryString.stringify({
           response_type: "code",
           client_id: clientId,
@@ -36,7 +36,7 @@ export const cignaLoginHelper = async (code) => {
   console.log(accessForm)
   const auth = btoa(`${clientId}:${clientSecret}`)
   return await axios
-    .post("https://hi2.cigna.com/mga/sps/oauth/oauth20/token", accessForm, {
+    .post("https://r-hi2.cigna.com/mga/sps/oauth/oauth20/token", accessForm, {
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, HEAD, OPTIONS",
