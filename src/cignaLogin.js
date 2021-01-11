@@ -4,7 +4,7 @@ import queryString from "querystring"
 const redirectUri = "thrive-test2.herokuapp.com"
 const clientId = process.env.REACT_APP_CIGNA_ID
 const clientSecret = process.env.REACT_APP_CIGNA_SECRET
-const scopes ="patient/*.read openid fhirUser"
+const scopes ="patient/*.read"
 
 export const cignaLogin = (code) => {
   if (code) {
@@ -14,7 +14,6 @@ export const cignaLogin = (code) => {
       "https://hi2.cigna.com/mga/sps/oauth/oauth20/authorize?" +
         queryString.stringify({
           response_type: "code",
-          nonce:"123456",
           client_id: clientId,
           scope: scopes,
           redirect_uri: redirectUri,
