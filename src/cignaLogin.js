@@ -1,7 +1,7 @@
 import axios from "axios"
 import queryString from "querystring"
 
-const redirectUri = "thrive-test2.herokuapp.com"
+const redirectUri = "https://thrive-test2.herokuapp.com"
 const clientId = process.env.REACT_APP_CIGNA_ID
 const clientSecret = process.env.REACT_APP_CIGNA_SECRET
 const scopes ="patient/*.read"
