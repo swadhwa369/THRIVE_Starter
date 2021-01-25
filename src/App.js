@@ -78,7 +78,7 @@ function App(props) {
   const [patientMemberID, setPatientMemberID] = useState('')
   const [patientPeriod, setPatientPeriod] = useState('')
   const [isLoggedIn, setisLoggedIn] = useState(false);
-  const [insurance, setInsurance] = useState('');
+  // const [insurance, setInsurance] = useState('');
   const [ins, setIns] = useState('');
 
   useEffect(() => {
