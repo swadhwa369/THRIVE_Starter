@@ -81,7 +81,7 @@ function App(props) {
   const [insurance, setInsurance] = useState('');
   const [ins, setIns] = useState('');
 
-  useEffect(() => {
+  componentDidMount(() => {
     if (!code) {
       let code = new URLSearchParams(window.location.search).get("code")
       if (code) {
@@ -89,7 +89,7 @@ function App(props) {
         let data1 = null;
         async function getData(){
           data1 = await loginHelper(code)
-          data1 = await cignaLoginHelper(code)
+          // data1 = await cignaLoginHelper(code)
           console.log(data1)
           setData(data1)
           if(data1){
