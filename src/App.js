@@ -84,7 +84,6 @@ function App(props) {
   useEffect(() => {
     if (!code) {
       let code = new URLSearchParams(window.location.search).get("code")
-      setInsurance(sessionStorage.getItem("insurance"))
       if (code) {
         setCode(code.slice(0, -1))
         let data1 = null;
