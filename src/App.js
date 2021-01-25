@@ -81,7 +81,7 @@ function App(props) {
   const [insurance, setInsurance] = useState('');
   const [ins, setIns] = useState('');
 
-  componentDidMount(() => {
+  useEffect(() => {
     if (!code) {
       let code = new URLSearchParams(window.location.search).get("code")
       if (code) {
