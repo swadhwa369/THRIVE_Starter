@@ -207,7 +207,7 @@ function App(props) {
   }
   const AetnaAuthorization = (event, res) => {
     aetnaLogin(code)
-    sessionStorage.setItem('Aetna', insurance)
+    sessionStorage.setItem('insurance', 'Aetna')
     console.log('Aetna Login Success: currentUser:', res);
     console.log(code)
     if(data !== [1,2]){
@@ -219,7 +219,7 @@ function App(props) {
   }
   const cignaAuthorization = (event, res) => {
     cignaLogin(code)
-    sessionStorage.setItem('Cigna', insurance)
+    sessionStorage.setItem('insurance', 'Cigna')
     console.log('Aetna Login Success: currentUser:', res);
     console.log(code)
     if(data !== [1,2]){
