@@ -78,12 +78,13 @@ function App(props) {
   const [patientMemberID, setPatientMemberID] = useState('')
   const [patientPeriod, setPatientPeriod] = useState('')
   const [isLoggedIn, setisLoggedIn] = useState(false);
-  // const [insurance, setInsurance] = useState('');
+  const [insurance, setInsurance] = useState('');
   const [ins, setIns] = useState('');
 
   useEffect(() => {
     if (!code) {
       let code = new URLSearchParams(window.location.search).get("code")
+      setInsurance(sessionStorage.getItem("insurance"))
       if (code) {
         setCode(code.slice(0, -1))
         let data1 = null;
