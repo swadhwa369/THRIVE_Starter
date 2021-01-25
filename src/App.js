@@ -87,20 +87,21 @@ function App(props) {
       if (code) {
         setCode(code.slice(0, -1))
         let data1 = null;
-        async function getData(){
-          data1 = await loginHelper(code)
-          // data1 = await cignaLoginHelper(code)
-          console.log(data1)
-          setData(data1)
-          if(data1){
-            setAT(data1[0])
-            setPatient(data1[1]) 
-            getPatientInfo(data1[0], data1[1])
-            getCoverageInfo(data1[0])
-          }
+          async function getData(){
+            data1 = await loginHelper(code)
+            console.log(data1)
+            setData(data1)
+            if(data1){
+              setAT(data1[0])
+              setPatient(data1[1]) 
+              getPatientInfo(data1[0], data1[1])
+              getCoverageInfo(data1[0])
+            }
              
-        }
-          
+          }
+          getData()  
+        
+        
       }
     }
   }, [])
