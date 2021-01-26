@@ -109,7 +109,7 @@ function App(props) {
   const getPatientInfo = async (token, patient_id) => {
     try {
       const patientInfo = await axios.get(
-        `https://p-hi2.digitaledge.cigna.com/ConsumerAccess/v1-devportal/` + patient_id ,
+        `https://p-hi2.digitaledge.cigna.com/ConsumerAccess/v1-devportal/` ,
         {
           headers: {
             Authorization: "Bearer " + token,
