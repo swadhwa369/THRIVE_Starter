@@ -119,7 +119,7 @@ function App(props) {
       );
       // const piJSON = await patientInfo.json();
       // console.log(piJSON)
-      console.log(patientInfo.data)
+      console.log('Patient Info: ', patientInfo)
       setPatientData(patientInfo.data)
       setPatientName(patientInfo.data.name[0].text)
       setPatientAddress(patientInfo.data.address[0].text)
