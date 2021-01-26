@@ -88,7 +88,7 @@ function App(props) {
         setCode(code.slice(0, -1))
         let data1 = null;
           async function getData(){
-            data1 = await loginHelper(code)
+            data1 = await cignaLoginHelper(code)
             console.log(data1)
             setData(data1)
             if(data1){
@@ -109,7 +109,7 @@ function App(props) {
   const getPatientInfo = async (token, patient_id) => {
     try {
       const patientInfo = await axios.get(
-        `https://vteapif1.aetna.com/fhirdemo/v1/patientaccess/Patient/` + patient_id ,
+        `https://p-hi2.digitaledge.cigna.com/ConsumerAccess/v1-devportal/` + patient_id ,
         {
           headers: {
             Authorization: "Bearer " + token,
